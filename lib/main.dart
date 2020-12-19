@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import './models/quiz.dart';
+import './screens/homeScreen.dart';
 
 class MyApp extends StatefulWidget {
   @override
@@ -8,19 +12,24 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Quiz App",
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-      home: Quiz(),
+    return ChangeNotifierProvider(
+      create: (contxt) => Quiz(),
+      child: MaterialApp(
+        title: "Quiz App",
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.light(),
+        home: QuizApp(),
+      ),
     );
   }
 }
 
-class Quiz extends StatelessWidget {
+class QuizApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: HomeScreen(),
+    );
   }
 }
 
